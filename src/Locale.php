@@ -10,13 +10,13 @@ class Locale implements Contracts\Locale
 {
     public static function from(MoneyContract $money, string $locale = 'ms-MY'): MoneyContract
     {
-        return tap($money, function ($money) use ($locale) {
-            $money->setFormatter(
-                new IntlMoneyFormatter(
-                    new \NumberFormatter($locale, \NumberFormatter::CURRENCY),
-                    new ISOCurrencies()
-                )
-            );
-        });
+        $money->setFormatter(
+            new IntlMoneyFormatter(
+                new \NumberFormatter($locale, \NumberFormatter::CURRENCY),
+                new ISOCurrencies()
+            )
+        );
+
+        return $money;
     }
 }
